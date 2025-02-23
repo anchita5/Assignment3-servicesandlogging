@@ -42,3 +42,17 @@ void sendLogMessage(const string& serverIP, int port, const string& message) {
     WSACleanup();
 }
 
+int main(int argc, char* argv[]) {
+    if (argc < 4) {
+        cout << "Usage: client <server_ip> <port> <message>" << endl; //printing the usage info
+        return 1; //return with error if something is missing
+    }
+
+    string serverIP = argv[1]; //server's Ip
+    int port = stoi(argv[2]); //port
+    string message = argv[3]; //message that will be sent
+
+    sendLogMessage(serverIP, port, message); //sendLogMessage will send the log message here
+    return 0; //success
+}
+
