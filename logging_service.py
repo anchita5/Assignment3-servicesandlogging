@@ -27,7 +27,7 @@ def handle_client(conn, addr):
     
     # write log in a file
     with open(LOG_FILE, "a") as log_file:
-        log_file.write(f"{addr[0]} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {data}\n")
+        log_file.write(f"{addr[0]} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {data}\n") 
     
     client_last_log[addr[0]] = now  
     conn.send(b"Log received.\n")  # send the confirmation to client
@@ -35,7 +35,7 @@ def handle_client(conn, addr):
 
     def start_server(host, port):
     """Starts the logging server."""
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #server starting
     server.bind((host, port))
     server.listen(5)
     print(f"Logging server started on {host}:{port}")
