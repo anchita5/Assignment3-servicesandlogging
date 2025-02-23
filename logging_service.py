@@ -32,3 +32,14 @@ def handle_client(conn, addr):
     client_last_log[addr[0]] = now  
     conn.send(b"Log received.\n")  # send the confirmation to client
     conn.close()
+
+    def start_server(host, port):
+    """Starts the logging server."""
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((host, port))
+    server.listen(5)
+    print(f"Logging server started on {host}:{port}")
+    
+    while True:
+        conn, addr = server.accept()
+        threading.Thread(target=handle_client, args=(conn, addr)).start()
