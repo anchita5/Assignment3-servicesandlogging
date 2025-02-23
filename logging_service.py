@@ -10,3 +10,4 @@ RATE_LIMIT = 1
 def handle_client(conn, addr):
     """Handles incoming log messages from clients."""
     global client_last_log
+    //commenting in python file
