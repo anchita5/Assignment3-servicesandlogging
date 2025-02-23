@@ -52,3 +52,36 @@ int main(int argc, char* argv[]) {
     string serverIP = argv[1]; //server's Ip
     int port = stoi(argv[2]); //port
     
+    int choice;
+    cout << "Select mode:\n1. Manual Log Entry\n2. Automatic Log Testing\nEnter choice: ";
+    cin >> choice;
+    cin.ignore(); // clear the input buffer
+
+    if (choice == 1) {
+        // maually entering log
+        string message;
+        cout << "Enter log message: ";
+        getline(cin, message);
+        sendLogMessage(serverIP, port, message);
+    }
+    else if (choice == 2) {
+        // automatic log test
+        vector<string> testMessages = {
+            "INFO: User logged in",
+            "WARNING: High memory usage detected",
+            "ERROR: Failed to connect to database",
+            "DEBUG: Variable x = 10",
+            "CRITICAL: System shutdown imminent"
+        };
+
+        for (const string& message : testMessages) {
+            sendLogMessage(serverIP, port, message);
+            Sleep(1000);  // wait 1 second to avoid rate limiting
+        }
+    }
+    else {
+        cout << "Invalid choice. Exiting." << endl;
+    }
+
+    return 0;
+}
