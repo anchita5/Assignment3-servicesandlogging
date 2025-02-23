@@ -21,3 +21,14 @@ def handle_client(conn, addr):
         conn.close()
         print(f"Disconnected from {addr[0]}")
         return
+
+     data = conn.recv(1024).decode()
+    print(f"Received from {addr[0]}: {data}")
+    
+    # write log in a file
+    with open(LOG_FILE, "a") as log_file:
+        log_file.write(f"{addr[0]} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {data}\n")
+    
+    client_last_log[addr[0]] = now  
+    conn.send(b"Log received.\n")  # send the confirmation to client
+    conn.close()
