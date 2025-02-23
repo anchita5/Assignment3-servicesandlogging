@@ -43,3 +43,12 @@ def handle_client(conn, addr):
     while True:
         conn, addr = server.accept()
         threading.Thread(target=handle_client, args=(conn, addr)).start()
+
+        if __name__ == "__main__":
+           parser = argparse.ArgumentParser(description="Logging Service")
+           parser.add_argument("--host", type=str, default="0.0.0.0", help="Server host")
+           parser.add_argument("--port", type=int, default=5000, help="Server port")
+           parser.add_argument("--format", default="{ip} - {timestamp} - {message}", help="Log message format")
+           args = parser.parse_args()
+    
+           start_server(args.host, args.port)
