@@ -18,6 +18,7 @@ void sendLogMessage(const string& serverIP, int port, const string& message) {
     if (sock == INVALID_SOCKET) { //checking
         cerr << "Socket creation failed." << endl; //error message if it fails
         return;
+        return;
     }
 
     sockaddr_in serverAddr; //server address will be held
@@ -34,24 +35,23 @@ void sendLogMessage(const string& serverIP, int port, const string& message) {
 
     send(sock, message.c_str(), message.size(), 0); //sending the log message to server
 
-
     char buffer[1024] = { 0 }; //buffer to store the response
     recv(sock, buffer, sizeof(buffer), 0); //recieved message will be stored here in the buffer
-    cout << "Server Response: " << buffer << endl; //prints
+    cout << "Server Response: " << buffer << endl;
 
     closesocket(sock);
     WSACleanup();
 }
 
 int main(int argc, char* argv[]) {
-    if (argc < 4) {
-        cout << "Usage: client <server_ip> <port> <message>" << endl; //printing the usage info
+    if (argc < 3) {
+        cout << "Usage: client <server_ip> <port>" << endl; //printing the usage info
         return 1; //return with error if something is missing
     }
 
-    string serverIP = argv[1]; //server's Ip
+    string serverIP = argv[1];  //server's Ip
     int port = stoi(argv[2]); //port
-    
+
     int choice;
     cout << "Select mode:\n1. Manual Log Entry\n2. Automatic Log Testing\nEnter choice: ";
     cin >> choice;
