@@ -38,7 +38,7 @@ def handle_client(conn, addr):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #server starting
     server.bind((host, port))
     server.listen(5)
-    print(f"Logging server started on {host}:{port}")
+    print(f"Logging server started on {host}:{port}") #prints
     
     while True:
         conn, addr = server.accept()
