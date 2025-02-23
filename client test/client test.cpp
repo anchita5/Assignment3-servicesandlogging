@@ -30,3 +30,15 @@ void sendLogMessage(const string& serverIP, int port, const string& message) {
         WSACleanup();
         return;
     }
+
+    send(sock, message.c_str(), message.size(), 0); //sending the log message to server
+
+
+    char buffer[1024] = { 0 }; //buffer to store the response
+    recv(sock, buffer, sizeof(buffer), 0); //recieved message will be stored here in the buffer
+    cout << "Server Response: " << buffer << endl; //prints
+
+    closesocket(sock);
+    WSACleanup();
+}
+
