@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
@@ -50,9 +51,4 @@ int main(int argc, char* argv[]) {
 
     string serverIP = argv[1]; //server's Ip
     int port = stoi(argv[2]); //port
-    string message = argv[3]; //message that will be sent
-
-    sendLogMessage(serverIP, port, message); //sendLogMessage will send the log message here
-    return 0; //success
-}
-
+    
