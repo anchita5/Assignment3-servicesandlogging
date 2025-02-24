@@ -55,7 +55,7 @@ void sendLogMessage(const string& serverIP, int port, const string& message) {
 
     char buffer[1024] = { 0 }; //buffer to store the response
     recv(sock, buffer, sizeof(buffer), 0); //recieved message will be stored here in the buffer
-    cout << "Server Response: " << buffer << endl;
+    cout << "Server Response: " << buffer << endl; //message recieved by server
 
     closesocket(sock);
     WSACleanup();
