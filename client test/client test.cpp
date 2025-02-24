@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
         }
     }
     else {
-        cout << "Invalid choice. Exiting." << endl;
+        cout << "Invalid choice. Exiting." << endl; //message
     }
 
     return 0;
